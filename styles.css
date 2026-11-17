@@ -1,0 +1,428 @@
+/* ==========================================================================
+   Field Notes — John Rodriguez · responsive newsletter page
+   Mobile-first. Breakpoints: 600px (tablet) and 960px (desktop).
+   System font stack only; no external fonts, scripts or dependencies.
+   ========================================================================== */
+
+:root {
+  --forest: #1E4038;
+  --body: #52615A;
+  --terracotta: #C86645;
+  --sage: #A7B8A0;
+  --pale-sage: #E5ECE2;
+  --canvas: #F1EFE8;
+  --white: #FFFFFF;
+  --panel: #F7F3EA;
+  --divider: #DCE2DB;
+
+  --font: Arial, Helvetica, sans-serif;
+
+  /* Values below are the mobile (390px) targets; larger breakpoints override them. */
+  --page-margin-x: 16px;
+  --page-margin-y: 24px;
+  --page-pad: 28px 20px 26px;
+  --h1-size: 34px;
+  --h1-lh: 40px;
+  --intro-size: 15px;
+  --intro-lh: 24px;
+  --card-title-size: 24px;
+  --card-title-lh: 29px;
+  --card-body-size: 14px;
+  --card-body-lh: 22px;
+  --card-link-size: 13px;
+  --panel-h: 142px;
+}
+
+/* ---- Reset / base ------------------------------------------------------ */
+* { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--body);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, p, ol { margin: 0; }
+ol { padding: 0; list-style: none; }
+img { display: block; max-width: 100%; height: auto; }
+
+/* Visible keyboard focus for every interactive element */
+a:focus-visible {
+  outline: 3px solid var(--terracotta);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Anchor targets keep a little breathing room when scrolled into view */
+#checklist, #review-note { scroll-margin-top: 24px; }
+
+/* ---- Page panel -------------------------------------------------------- */
+.page {
+  width: auto;
+  max-width: 960px;
+  margin: var(--page-margin-y) var(--page-margin-x);
+  padding: var(--page-pad);
+  background: var(--white);
+}
+
+/* ---- Header ------------------------------------------------------------ */
+.site-header {
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand__mark { flex: none; width: 40px; height: 40px; }
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.brand__name {
+  color: var(--forest);
+  font-size: 13px;
+  line-height: 17px;
+  font-weight: 700;
+}
+
+.brand__series {
+  color: var(--body);
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.issue {
+  margin-top: 21px;
+  color: var(--body);
+  font-size: 10px;
+  line-height: 14px;
+}
+
+/* ---- Hero -------------------------------------------------------------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-top: 24px;
+  padding-bottom: 32px;
+}
+
+.eyebrow {
+  color: var(--forest);
+  font-size: 9px;
+  line-height: 12px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin-top: 11px;
+  color: var(--forest);
+  font-size: var(--h1-size);
+  line-height: var(--h1-lh);
+  font-weight: 700;
+}
+
+.hero__line,
+.hero__part { display: block; }
+
+.hero__intro {
+  max-width: 240px;
+  margin-top: 9px;
+  font-size: var(--intro-size);
+  line-height: var(--intro-lh);
+}
+
+.line { display: inline; }
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 176px;
+  height: 48px;
+  margin-top: 27px;
+  border-radius: 8px;
+  background: var(--forest);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover { background: #17332c; }
+.button:focus-visible { outline-color: var(--terracotta); }
+
+.hero__art {
+  width: 100%;
+  max-width: 360px;
+  margin-top: 32px;
+}
+
+/* ---- Articles ---------------------------------------------------------- */
+.articles {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 27px;
+  padding-top: 26px;
+  padding-bottom: 33px;
+  border-top: 1px solid var(--divider);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card__label {
+  color: var(--terracotta);
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 700;
+}
+
+.card__title {
+  max-width: 216px;
+  margin-top: 13px;
+  color: var(--forest);
+  font-size: var(--card-title-size);
+  line-height: var(--card-title-lh);
+  font-weight: 700;
+}
+
+.card__body {
+  max-width: 232px;
+  margin-top: 22px;
+  font-size: var(--card-body-size);
+  line-height: var(--card-body-lh);
+}
+
+.card__link {
+  margin-top: 5px;
+  color: var(--forest);
+  font-size: var(--card-link-size);
+  line-height: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.card__link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Mobile measure per card so the wrap matches the 390px reference
+   (card 1 must break before "realistic", card 2 must keep "carry over"). */
+.card:nth-child(1) .card__body { max-width: 226px; }
+.card:nth-child(2) .card__body { max-width: 236px; }
+
+/* ---- Checklist panel --------------------------------------------------- */
+.checklist {
+  min-height: 124px;
+  padding: 16px 14px;
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.checklist__title {
+  color: var(--forest);
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 700;
+}
+
+.checklist__list {
+  margin-top: 6px;
+  color: var(--forest);
+  font-size: 13px;
+  line-height: 21px;
+  list-style: decimal inside;
+}
+
+/* ---- Footer ------------------------------------------------------------ */
+.site-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__brand {
+  margin-top: 19px;
+  color: var(--forest);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+}
+
+.footer__review {
+  max-width: 170px;
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 21px;
+}
+
+.footer__note {
+  max-width: 160px;
+  margin-top: 27px;
+  font-size: 12px;
+  line-height: 19px;
+}
+
+/* ==========================================================================
+   Tablet: 600px and up — single-column hero, two-column articles
+   ========================================================================== */
+@media (min-width: 600px) {
+  :root {
+    --page-margin-x: 24px;
+    --page-pad: 36px 32px 36px;
+    --h1-size: 38px;
+    --h1-lh: 46px;
+    --intro-size: 16px;
+    --intro-lh: 26px;
+    --card-title-size: 22px;
+    --card-title-lh: 28px;
+    --card-body-size: 15px;
+    --card-body-lh: 25px;
+    --card-link-size: 14px;
+  }
+
+  .page { margin-left: auto; margin-right: auto; width: calc(100% - 48px); }
+
+  .site-header { padding-bottom: 20px; }
+  .hero { padding-top: 32px; padding-bottom: 40px; }
+  .hero__intro { max-width: 34em; margin-top: 16px; }
+  .hero__art { max-width: none; margin-top: 36px; }
+
+  .articles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    padding-top: 36px;
+    padding-bottom: 40px;
+  }
+
+  .card__title, .card:nth-child(n) .card__body { max-width: none; }
+  .card__body { margin-bottom: 16px; }
+  .card__link { margin-top: auto; }
+
+  .checklist { padding: 20px 24px; }
+  .footer__review, .footer__note { max-width: none; }
+}
+
+/* ==========================================================================
+   Large tablet: 720px and up — copy left, fluid artwork right
+   ========================================================================== */
+@media (min-width: 720px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) clamp(240px, 38%, 360px);
+    column-gap: 32px;
+    align-items: start;
+  }
+  .hero__art { grid-column: 2; grid-row: 1; margin-top: 0; }
+}
+
+/* ==========================================================================
+   Desktop: 960px and up — matches the 1440 reference
+   Panel 960 wide, inner padding 48, 24px article gap, 360x300 artwork.
+   ========================================================================== */
+@media (min-width: 960px) {
+  :root {
+    --page-margin-y: 40px;
+    --page-pad: 44px 48px 78px;
+  }
+
+  .page { width: min(960px, calc(100% - 32px)); }
+
+  /* Header: brand left, issue date in a right-hand column */
+  .site-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 208px;
+    align-items: start;
+    padding-bottom: 28px;
+  }
+  .brand__name { font-size: 15px; }
+  .brand__series { font-size: 11px; }
+  .issue { margin-top: 11px; margin-bottom: -7px; font-size: 11px; line-height: 18px; }
+  .issue time, .issue span:last-child { display: block; }
+  .issue__sep { display: none; }
+
+  /* Hero: copy left, 360px artwork right */
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    column-gap: 48px;
+    align-items: start;
+    padding-top: 35px;
+    padding-bottom: 48px;
+  }
+  .hero__copy { padding-top: 3px; }
+  .eyebrow { font-size: 10px; line-height: 14px; }
+  .hero h1 { margin-top: 14px; }
+  .hero__part { display: inline; }
+  .hero__intro { max-width: none; margin-top: 20px; }
+  .hero__intro .line { display: block; }
+  .button { margin-top: 30px; }
+  .hero__art { grid-column: 2; grid-row: 1; margin-top: 0; max-width: none; }
+
+  /* Articles: two equal columns, 24px gap */
+  .articles { padding-top: 39px; padding-bottom: 51px; }
+  .card__label { font-size: 11px; line-height: 16px; }
+  .card__title { margin-top: 16px; }
+  .card__body { margin-top: 17px; margin-bottom: 39px; }
+  .card__body .line { display: block; }
+
+  /* Checklist panel: fixed height so the footer's review prompt sits inside it */
+  .checklist {
+    height: var(--panel-h);
+    min-height: 0;
+    padding: 22px 24px;
+    border-radius: 12px;
+  }
+  .checklist__title { font-size: 11px; line-height: 16px; }
+  .checklist__list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 12px;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  /* Footer: the review prompt is drawn inside the checklist panel (as in the
+     desktop reference) and moves below it on narrower layouts. */
+  .site-footer {
+    margin-top: calc(var(--panel-h) * -1);
+    padding: 98px 0 0;
+    pointer-events: none;
+  }
+  .site-footer p { pointer-events: auto; }
+  .footer__review {
+    order: -1;
+    margin-top: 0;
+    margin-left: 24px;
+    color: var(--body);
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .footer__brand { margin-top: 69px; font-size: 14px; line-height: 20px; }
+  .footer__note { margin-top: 8px; font-size: 13px; line-height: 19px; }
+}
+
+/* ==========================================================================
+   Very narrow phones (320px): keep the hero title inside the panel
+   ========================================================================== */
+@media (max-width: 359px) {
+  :root { --h1-size: 31px; --h1-lh: 38px; }
+  .page { --page-pad: 28px 16px 26px; }
+}
